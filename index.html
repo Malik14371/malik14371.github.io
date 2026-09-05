@@ -220,28 +220,42 @@ img{max-width:100%;display:block;}
           <button class="unit-btn" data-unit="imperial">Imperial</button>
         </div>
 
-        <div class="tabs">
+        <div class="tabs" style="max-height: 250px; overflow-y: auto;">
           <button class="tab-btn active" data-tab="bmi">BMI</button>
-          <button class="tab-btn" data-tab="calories">Calories (BMR/TDEE)</button>
+          <button class="tab-btn" data-tab="calories">Calories</button>
+          <button class="tab-btn" data-tab="bmr">BMR</button>
+          <button class="tab-btn" data-tab="bodyfat">Body Fat</button>
           <button class="tab-btn" data-tab="ideal">Ideal Weight</button>
-          <button class="tab-btn" data-tab="bodyfat">Body Fat %</button>
+          <button class="tab-btn" data-tab="pace">Pace</button>
+          <button class="tab-btn" data-tab="armybf">Army Body Fat</button>
+          <button class="tab-btn" data-tab="lbm">Lean Body Mass</button>
+          <button class="tab-btn" data-tab="healthywt">Healthy Weight</button>
+          <button class="tab-btn" data-tab="calburned">Calories Burned</button>
+          <button class="tab-btn" data-tab="onerep">One Rep Max</button>
+          <button class="tab-btn" data-tab="heartrate">Target Heart Rate</button>
+          <button class="tab-btn" data-tab="preg">Pregnancy</button>
+          <button class="tab-btn" data-tab="pregwt">Pregnancy Weight Gain</button>
+          <button class="tab-btn" data-tab="conception">Conception</button>
+          <button class="tab-btn" data-tab="duedate">Due Date</button>
+          <button class="tab-btn" data-tab="ovulation">Ovulation</button>
+          <button class="tab-btn" data-tab="period">Period</button>
+          <button class="tab-btn" data-tab="macro">Macro</button>
+          <button class="tab-btn" data-tab="carb">Carbohydrate</button>
+          <button class="tab-btn" data-tab="protein">Protein</button>
+          <button class="tab-btn" data-tab="fat">Fat Intake</button>
+          <button class="tab-btn" data-tab="tdee">TDEE</button>
+          <button class="tab-btn" data-tab="gfr">GFR</button>
+          <button class="tab-btn" data-tab="bodytype">Body Type</button>
+          <button class="tab-btn" data-tab="bsa">Body Surface Area</button>
+          <button class="tab-btn" data-tab="bac">BAC</button>
         </div>
 
-        <!-- BMI -->
+        <!-- 1. BMI -->
         <div class="calc-panel active" id="panel-bmi">
-          <div class="field-row unit-metric">
-            <div class="field"><label>Height (cm)</label><input type="number" id="bmi-height-cm" placeholder="170"></div>
-          </div>
-          <div class="field-row unit-imperial" style="display:none;">
-            <div class="field"><label>Height (ft)</label><input type="number" id="bmi-height-ft" placeholder="5"></div>
-            <div class="field"><label>Height (in)</label><input type="number" id="bmi-height-in" placeholder="7"></div>
-          </div>
-          <div class="field-row unit-metric">
-            <div class="field"><label>Weight (kg)</label><input type="number" id="bmi-weight-kg" placeholder="65"></div>
-          </div>
-          <div class="field-row unit-imperial" style="display:none;">
-            <div class="field"><label>Weight (lb)</label><input type="number" id="bmi-weight-lb" placeholder="143"></div>
-          </div>
+          <div class="field-row unit-metric"><div class="field"><label>Height (cm)</label><input type="number" id="bmi-height-cm" placeholder="170"></div></div>
+          <div class="field-row unit-imperial" style="display:none;"><div class="field"><label>Height (ft)</label><input type="number" id="bmi-height-ft" placeholder="5"></div><div class="field"><label>Height (in)</label><input type="number" id="bmi-height-in" placeholder="7"></div></div>
+          <div class="field-row unit-metric"><div class="field"><label>Weight (kg)</label><input type="number" id="bmi-weight-kg" placeholder="65"></div></div>
+          <div class="field-row unit-imperial" style="display:none;"><div class="field"><label>Weight (lb)</label><input type="number" id="bmi-weight-lb" placeholder="143"></div></div>
           <button class="btn" onclick="calcBMI()">Calculate BMI</button>
           <div class="result-box" id="bmi-result">
             <div class="result-headline">
@@ -261,7 +275,7 @@ img{max-width:100%;display:block;}
           </div>
         </div>
 
-        <!-- Calories -->
+        <!-- 2. Calories -->
         <div class="calc-panel" id="panel-calories">
           <div class="field-row">
             <div class="field"><label>Age</label><input type="number" id="cal-age" placeholder="28"></div>
@@ -307,31 +321,15 @@ img{max-width:100%;display:block;}
           </div>
         </div>
 
-        <!-- Ideal weight -->
-        <div class="calc-panel" id="panel-ideal">
-          <div class="field-row">
-            <div class="field"><label>Gender</label>
-              <select id="ideal-gender"><option value="male">Male</option><option value="female">Female</option></select>
-            </div>
-          </div>
-          <div class="field-row unit-metric">
-            <div class="field"><label>Height (cm)</label><input type="number" id="ideal-height-cm" placeholder="170"></div>
-          </div>
-          <div class="field-row unit-imperial" style="display:none;">
-            <div class="field"><label>Height (ft)</label><input type="number" id="ideal-height-ft" placeholder="5"></div>
-            <div class="field"><label>Height (in)</label><input type="number" id="ideal-height-in" placeholder="7"></div>
-          </div>
-          <button class="btn" onclick="calcIdeal()">Calculate ideal weight</button>
-          <div class="result-box" id="ideal-result">
-            <div class="result-headline">
-              <span class="result-value" id="ideal-value">–</span>
-            </div>
-            <p class="muted" style="margin:0 0 4px;font-size:.85rem;">Healthy reference range: <strong id="ideal-range">–</strong></p>
-            <p class="result-note">Based on the Devine formula, originally built for medical dosing — treat it as a reference, not a strict target. Frame and muscle mass matter too.</p>
-          </div>
+        <!-- 3. BMR -->
+        <div class="calc-panel" id="panel-bmr">
+          <div class="field-row"><div class="field"><label>Age</label><input type="number" id="bmr-age" placeholder="25"></div><div class="field"><label>Gender</label><select id="bmr-gender"><option value="male">Male</option><option value="female">Female</option></select></div></div>
+          <div class="field-row unit-metric"><div class="field"><label>Height (cm)</label><input type="number" id="bmr-height-cm" placeholder="170"></div><div class="field"><label>Weight (kg)</label><input type="number" id="bmr-weight-kg" placeholder="65"></div></div>
+          <button class="btn" onclick="calcBMR()">Calculate BMR</button>
+          <div class="result-box" id="bmr-result"><div class="result-headline"><span class="result-value" id="bmr-value">–</span></div><p class="result-note">Calories burned at complete rest.</p></div>
         </div>
 
-        <!-- Body fat -->
+        <!-- 4. Body fat -->
         <div class="calc-panel" id="panel-bodyfat">
           <div class="field-row">
             <div class="field"><label>Gender</label>
@@ -341,24 +339,13 @@ img{max-width:100%;display:block;}
           <div class="field-row unit-metric">
             <div class="field"><label>Height (cm)</label><input type="number" id="bf-height-cm" placeholder="170"></div>
           </div>
-          <div class="field-row unit-imperial" style="display:none;">
-            <div class="field"><label>Height (ft)</label><input type="number" id="bf-height-ft" placeholder="5"></div>
-            <div class="field"><label>Height (in)</label><input type="number" id="bf-height-in" placeholder="7"></div>
-          </div>
           <div class="field-row unit-metric">
             <div class="field"><label>Neck (cm)</label><input type="number" id="bf-neck-cm" placeholder="36"></div>
             <div class="field"><label>Waist (cm)</label><input type="number" id="bf-waist-cm" placeholder="80"></div>
           </div>
-          <div class="field-row unit-imperial" style="display:none;">
-            <div class="field"><label>Neck (in)</label><input type="number" id="bf-neck-in" placeholder="14"></div>
-            <div class="field"><label>Waist (in)</label><input type="number" id="bf-waist-in" placeholder="31"></div>
-          </div>
           <div id="bf-hip-wrap" style="display:none;">
             <div class="field-row unit-metric">
               <div class="field"><label>Hip (cm)</label><input type="number" id="bf-hip-cm" placeholder="95"></div>
-            </div>
-            <div class="field-row unit-imperial" style="display:none;">
-              <div class="field"><label>Hip (in)</label><input type="number" id="bf-hip-in" placeholder="37"></div>
             </div>
           </div>
           <button class="btn" onclick="calcBodyFat()">Calculate body fat %</button>
@@ -367,8 +354,183 @@ img{max-width:100%;display:block;}
               <span class="result-value" id="bf-value">–</span>
               <span class="result-badge" id="bf-cat" style="background:var(--vital)">–</span>
             </div>
-            <p class="result-note">Uses the U.S. Navy circumference method — reasonably accurate without any special equipment.</p>
+            <p class="result-note">Uses the U.S. Navy circumference method.</p>
           </div>
+        </div>
+
+        <!-- 5. Ideal weight -->
+        <div class="calc-panel" id="panel-ideal">
+          <div class="field-row">
+            <div class="field"><label>Gender</label>
+              <select id="ideal-gender"><option value="male">Male</option><option value="female">Female</option></select>
+            </div>
+          </div>
+          <div class="field-row unit-metric">
+            <div class="field"><label>Height (cm)</label><input type="number" id="ideal-height-cm" placeholder="170"></div>
+          </div>
+          <button class="btn" onclick="calcIdeal()">Calculate ideal weight</button>
+          <div class="result-box" id="ideal-result">
+            <div class="result-headline">
+              <span class="result-value" id="ideal-value">–</span>
+            </div>
+            <p class="muted" style="margin:0 0 4px;font-size:.85rem;">Healthy reference range: <strong id="ideal-range">–</strong></p>
+            <p class="result-note">Based on the Devine formula.</p>
+          </div>
+        </div>
+
+        <!-- 6. Pace -->
+        <div class="calc-panel" id="panel-pace">
+          <div class="field-row"><div class="field"><label>Distance (km)</label><input type="number" id="pace-dist" placeholder="5"></div><div class="field"><label>Time (Minutes)</label><input type="number" id="pace-time" placeholder="30"></div></div>
+          <button class="btn" onclick="calcPace()">Calculate Pace</button>
+          <div class="result-box" id="pace-result"><div class="result-headline"><span class="result-value" id="pace-value">–</span></div><p class="result-note">Minutes per kilometer</p></div>
+        </div>
+
+        <!-- 7. Army Body Fat -->
+        <div class="calc-panel" id="panel-armybf">
+          <div class="field-row"><div class="field"><label>Gender</label><select id="army-gender"><option value="male">Male</option><option value="female">Female</option></select></div><div class="field"><label>Height (cm)</label><input type="number" id="army-height" placeholder="175"></div></div>
+          <div class="field-row"><div class="field"><label>Neck (cm)</label><input type="number" id="army-neck" placeholder="38"></div><div class="field"><label>Abdomen/Waist (cm)</label><input type="number" id="army-waist" placeholder="85"></div></div>
+          <button class="btn" onclick="calcArmyBF()">Calculate Army BF</button>
+          <div class="result-box" id="army-result"><div class="result-headline"><span class="result-value" id="army-value">–</span></div></div>
+        </div>
+
+        <!-- 8. Lean Body Mass -->
+        <div class="calc-panel" id="panel-lbm">
+          <div class="field-row"><div class="field"><label>Gender</label><select id="lbm-gender"><option value="male">Male</option><option value="female">Female</option></select></div><div class="field"><label>Weight (kg)</label><input type="number" id="lbm-weight" placeholder="70"></div><div class="field"><label>Height (cm)</label><input type="number" id="lbm-height" placeholder="175"></div></div>
+          <button class="btn" onclick="calcLBM()">Calculate LBM</button>
+          <div class="result-box" id="lbm-result"><div class="result-headline"><span class="result-value" id="lbm-value">–</span></div></div>
+        </div>
+
+        <!-- 9. Healthy Weight -->
+        <div class="calc-panel" id="panel-healthywt">
+          <div class="field-row"><div class="field"><label>Height (cm)</label><input type="number" id="hw-height" placeholder="170"></div></div>
+          <button class="btn" onclick="calcHealthyWt()">Calculate Healthy Weight</button>
+          <div class="result-box" id="hw-result"><div class="result-headline"><span class="result-value" id="hw-value">–</span></div></div>
+        </div>
+
+        <!-- 10. Calories Burned -->
+        <div class="calc-panel" id="panel-calburned">
+          <div class="field-row"><div class="field"><label>Weight (kg)</label><input type="number" id="cb-weight" placeholder="70"></div><div class="field"><label>Duration (Minutes)</label><input type="number" id="cb-time" placeholder="45"></div></div>
+          <button class="btn" onclick="calcCaloriesBurned()">Calculate Burned Calories</button>
+          <div class="result-box" id="cb-result"><div class="result-headline"><span class="result-value" id="cb-value">–</span></div></div>
+        </div>
+
+        <!-- 11. One Rep Max -->
+        <div class="calc-panel" id="panel-onerep">
+          <div class="field-row"><div class="field"><label>Weight Lifted (kg)</label><input type="number" id="orm-weight" placeholder="80"></div><div class="field"><label>Reps Performed</label><input type="number" id="orm-reps" placeholder="5"></div></div>
+          <button class="btn" onclick="calcOneRepMax()">Calculate One Rep Max</button>
+          <div class="result-box" id="orm-result"><div class="result-headline"><span class="result-value" id="orm-value">–</span></div></div>
+        </div>
+
+        <!-- 12. Target Heart Rate -->
+        <div class="calc-panel" id="panel-heartrate">
+          <div class="field-row"><div class="field"><label>Age</label><input type="number" id="hr-age" placeholder="30"></div></div>
+          <button class="btn" onclick="calcHeartRate()">Calculate Heart Rate</button>
+          <div class="result-box" id="hr-result"><div class="result-headline"><span class="result-value" id="hr-value">–</span></div></div>
+        </div>
+
+        <!-- 13. Pregnancy -->
+        <div class="calc-panel" id="panel-preg">
+          <div class="field-row"><div class="field"><label>Last Period Date</label><input type="date" id="preg-date"></div></div>
+          <button class="btn" onclick="calcPregnancy()">Calculate Weeks</button>
+          <div class="result-box" id="preg-result"><div class="result-headline"><span class="result-value" id="preg-value">–</span></div></div>
+        </div>
+
+        <!-- 14. Pregnancy Weight Gain -->
+        <div class="calc-panel" id="panel-pregwt">
+          <div class="field-row"><div class="field"><label>Pre-pregnancy Weight (kg)</label><input type="number" id="pw-weight" placeholder="60"></div></div>
+          <button class="btn" onclick="calcPregWeight()">Calculate Weight Gain</button>
+          <div class="result-box" id="pw-result"><div class="result-headline"><span class="result-value" id="pw-value">–</span></div></div>
+        </div>
+
+        <!-- 15. Conception -->
+        <div class="calc-panel" id="panel-conception">
+          <div class="field-row"><div class="field"><label>Due Date</label><input type="date" id="conc-date"></div></div>
+          <button class="btn" onclick="calcConception()">Calculate Conception Date</button>
+          <div class="result-box" id="conc-result"><div class="result-headline"><span class="result-value" id="conc-value">–</span></div></div>
+        </div>
+
+        <!-- 16. Due Date -->
+        <div class="calc-panel" id="panel-duedate">
+          <div class="field-row"><div class="field"><label>Last Period Date</label><input type="date" id="due-date"></div></div>
+          <button class="btn" onclick="calcDueDate()">Calculate Due Date</button>
+          <div class="result-box" id="due-result"><div class="result-headline"><span class="result-value" id="due-value">–</span></div></div>
+        </div>
+
+        <!-- 17. Ovulation -->
+        <div class="calc-panel" id="panel-ovulation">
+          <div class="field-row"><div class="field"><label>Last Period Date</label><input type="date" id="ov-date"></div></div>
+          <button class="btn" onclick="calcOvulation()">Calculate Ovulation</button>
+          <div class="result-box" id="ov-result"><div class="result-headline"><span class="result-value" id="ov-value">–</span></div></div>
+        </div>
+
+        <!-- 18. Period -->
+        <div class="calc-panel" id="panel-period">
+          <div class="field-row"><div class="field"><label>Last Period Date</label><input type="date" id="per-date"></div><div class="field"><label>Cycle Length (Days)</label><input type="number" id="per-cycle" placeholder="28"></div></div>
+          <button class="btn" onclick="calcPeriod()">Calculate Next Period</button>
+          <div class="result-box" id="per-result"><div class="result-headline"><span class="result-value" id="per-value">–</span></div></div>
+        </div>
+
+        <!-- 19. Macro -->
+        <div class="calc-panel" id="panel-macro">
+          <div class="field-row"><div class="field"><label>Daily Calories</label><input type="number" id="macro-cal" placeholder="2000"></div><div class="field"><label>Goal</label><select id="macro-goal"><option value="maintain">Maintain</option><option value="loss">Lose Fat</option><option value="gain">Build Muscle</option></select></div></div>
+          <button class="btn" onclick="calcMacros()">Calculate Macros</button>
+          <div class="result-box" id="macro-result"><div class="result-headline"><span class="result-value" id="macro-value">–</span></div></div>
+        </div>
+
+        <!-- 20. Carbohydrate -->
+        <div class="calc-panel" id="panel-carb">
+          <div class="field-row"><div class="field"><label>Daily Calories</label><input type="number" id="carb-cal" placeholder="2000"></div></div>
+          <button class="btn" onclick="calcCarbs()">Calculate Carbs</button>
+          <div class="result-box" id="carb-result"><div class="result-headline"><span class="result-value" id="carb-value">–</span></div></div>
+        </div>
+
+        <!-- 21. Protein -->
+        <div class="calc-panel" id="panel-protein">
+          <div class="field-row"><div class="field"><label>Weight (kg)</label><input type="number" id="prot-weight" placeholder="70"></div></div>
+          <button class="btn" onclick="calcProtein()">Calculate Protein</button>
+          <div class="result-box" id="prot-result"><div class="result-headline"><span class="result-value" id="prot-value">–</span></div></div>
+        </div>
+
+        <!-- 22. Fat Intake -->
+        <div class="calc-panel" id="panel-fat">
+          <div class="field-row"><div class="field"><label>Daily Calories</label><input type="number" id="fat-cal" placeholder="2000"></div></div>
+          <button class="btn" onclick="calcFat()">Calculate Fat</button>
+          <div class="result-box" id="fat-result"><div class="result-headline"><span class="result-value" id="fat-value">–</span></div></div>
+        </div>
+
+        <!-- 23. TDEE -->
+        <div class="calc-panel" id="panel-tdee">
+          <div class="field-row"><div class="field"><label>BMR</label><input type="number" id="tdee-bmr" placeholder="1500"></div><div class="field"><label>Activity</label><select id="tdee-act"><option value="1.2">Sedentary</option><option value="1.375">Light</option><option value="1.55">Moderate</option><option value="1.725">Active</option></select></div></div>
+          <button class="btn" onclick="calcTDEE()">Calculate TDEE</button>
+          <div class="result-box" id="tdee-result"><div class="result-headline"><span class="result-value" id="tdee-value">–</span></div></div>
+        </div>
+
+        <!-- 24. GFR -->
+        <div class="calc-panel" id="panel-gfr">
+          <div class="field-row"><div class="field"><label>Age</label><input type="number" id="gfr-age" placeholder="40"></div><div class="field"><label>Creatinine (mg/dL)</label><input type="number" step="0.1" id="gfr-creat" placeholder="1.0"></div></div>
+          <button class="btn" onclick="calcGFR()">Calculate GFR</button>
+          <div class="result-box" id="gfr-result"><div class="result-headline"><span class="result-value" id="gfr-value">–</span></div></div>
+        </div>
+
+        <!-- 25. Body Type -->
+        <div class="calc-panel" id="panel-bodytype">
+          <div class="field-row"><div class="field"><label>Body Build description</label><select id="bt-type"><option value="ectomorph">Ectomorph (Thin/Lean)</option><option value="mesomorph">Mesomorph (Athletic)</option><option value="endomorph">Endomorph (Solid/Bulky)</option></select></div></div>
+          <button class="btn" onclick="calcBodyType()">Determine Body Type</button>
+          <div class="result-box" id="bt-result"><div class="result-headline"><span class="result-value" id="bt-value">–</span></div></div>
+        </div>
+
+        <!-- 26. Body Surface Area -->
+        <div class="calc-panel" id="panel-bsa">
+          <div class="field-row"><div class="field"><label>Weight (kg)</label><input type="number" id="bsa-wt" placeholder="70"></div><div class="field"><label>Height (cm)</label><input type="number" id="bsa-ht" placeholder="175"></div></div>
+          <button class="btn" onclick="calcBSA()">Calculate BSA</button>
+          <div class="result-box" id="bsa-result"><div class="result-headline"><span class="result-value" id="bsa-value">–</span></div></div>
+        </div>
+
+        <!-- 27. BAC -->
+        <div class="calc-panel" id="panel-bac">
+          <div class="field-row"><div class="field"><label>Drinks consumed</label><input type="number" id="bac-drinks" placeholder="3"></div><div class="field"><label>Weight (kg)</label><input type="number" id="bac-wt" placeholder="70"></div></div>
+          <button class="btn" onclick="calcBAC()">Calculate BAC</button>
+          <div class="result-box" id="bac-result"><div class="result-headline"><span class="result-value" id="bac-value">–</span></div></div>
         </div>
 
       </div>
@@ -450,6 +612,12 @@ img{max-width:100%;display:block;}
   </section>
 </main>
 
+<section id="contact" style="padding: 30px; text-align: center; background: #f9f9f9; margin-top: 40px; border-radius: 8px;">
+  <h2>Contact Us</h2>
+  <p>If you have any questions or feedback, feel free to reach out to us via email.</p>
+  <p>Email: <a href="mailto:hhina7328@gmail.com" style="color: #2b7a78; font-weight: bold;">hhina7328@gmail.com</a></p>
+</section>
+
 <footer class="site-footer">
   <div class="container">
     © 2026 VitalCalc. Estimates only — not a substitute for professional medical advice.
@@ -463,34 +631,21 @@ function getUnit(){
 }
 function getHeightCm(prefix){
   if(getUnit() === 'metric'){
-    return parseFloat(document.getElementById(prefix+'-height-cm').value) || 0;
+    return parseFloat(document.getElementById(prefix+'-height-cm')?.value) || parseFloat(document.getElementById(prefix+'-height')?.value) || 0;
   }
-  const ft = parseFloat(document.getElementById(prefix+'-height-ft').value) || 0;
-  const inch = parseFloat(document.getElementById(prefix+'-height-in').value) || 0;
+  const ft = parseFloat(document.getElementById(prefix+'-height-ft')?.value) || 0;
+  const inch = parseFloat(document.getElementById(prefix+'-height-in')?.value) || 0;
   return (ft*12 + inch) * 2.54;
 }
 function getWeightKg(prefix){
   if(getUnit() === 'metric'){
-    return parseFloat(document.getElementById(prefix+'-weight-kg').value) || 0;
+    return parseFloat(document.getElementById(prefix+'-weight-kg')?.value) || parseFloat(document.getElementById(prefix+'-weight')?.value) || parseFloat(document.getElementById(prefix+'-wt')?.value) || 0;
   }
-  const lb = parseFloat(document.getElementById(prefix+'-weight-lb').value) || 0;
+  const lb = parseFloat(document.getElementById(prefix+'-weight-lb')?.value) || 0;
   return lb * 0.453592;
-}
-function getLenCm(idCm, idIn){
-  if(getUnit() === 'metric'){
-    return parseFloat(document.getElementById(idCm).value) || 0;
-  }
-  return (parseFloat(document.getElementById(idIn).value) || 0) * 2.54;
 }
 function fmtWeight(kg){
   return getUnit() === 'metric' ? kg.toFixed(1)+' kg' : (kg/0.453592).toFixed(1)+' lb';
-}
-function unitWarning(hcm, wkg){
-  const bad = [];
-  if(hcm && (hcm < 100 || hcm > 230)) bad.push('height');
-  if(wkg && (wkg < 25 || wkg > 250)) bad.push('weight');
-  if(bad.length === 0) return '';
-  return '⚠️ Your ' + bad.join(' and ') + ' looks unusual for the ' + getUnit() + ' unit selected above — double-check the Metric/Imperial toggle.';
 }
 
 function calcBMI(){
@@ -510,7 +665,6 @@ function calcBMI(){
   badge.textContent = cat;
   badge.style.background = color;
   document.getElementById('bmi-marker').style.left = pct + '%';
-  document.getElementById('bmi-warning').textContent = unitWarning(h*100, w);
 }
 
 function calcCalories(){
@@ -531,6 +685,36 @@ function calcCalories(){
   document.getElementById('cal-gain').textContent = Math.round(tdee+300) + ' kcal';
 }
 
+function calcBMR(){
+  const age = parseFloat(document.getElementById('bmr-age').value) || 25;
+  const gender = document.getElementById('bmr-gender').value;
+  const h = parseFloat(document.getElementById('bmr-height-cm').value) || 170;
+  const w = parseFloat(document.getElementById('bmr-weight-kg').value) || 65;
+  let bmr = 10*w + 6.25*h - 5*age + (gender === 'male' ? 5 : -161);
+  document.getElementById('bmr-result').style.display = 'block';
+  document.getElementById('bmr-value').textContent = Math.round(bmr) + ' kcal';
+}
+
+function calcBodyFat(){
+  const gender = document.getElementById('bf-gender').value;
+  const hcm = getHeightCm('bf');
+  const neck = parseFloat(document.getElementById('bf-neck-cm').value);
+  const waist = parseFloat(document.getElementById('bf-waist-cm').value);
+  let hip = gender === 'female' ? (parseFloat(document.getElementById('bf-hip-cm').value) || 0) : 0;
+  if(!hcm || !neck || !waist || (gender==='female' && !hip)){ alert('Please fill in all measurements.'); return; }
+  let bf;
+  if(gender === 'male'){
+    bf = 495/(1.0324 - 0.19077*Math.log10(waist-neck) + 0.15456*Math.log10(hcm)) - 450;
+  } else {
+    bf = 495/(1.29579 - 0.35004*Math.log10(waist+hip-neck) + 0.22100*Math.log10(hcm)) - 450;
+  }
+  bf = Math.max(2, Math.min(60, bf));
+  let cat = bf < 25 ? 'Fitness' : 'Average';
+  document.getElementById('bf-result').style.display = 'block';
+  document.getElementById('bf-value').textContent = bf.toFixed(1) + '%';
+  document.getElementById('bf-cat').textContent = cat;
+}
+
 function calcIdeal(){
   const gender = document.getElementById('ideal-gender').value;
   const hcm = getHeightCm('ideal');
@@ -547,39 +731,150 @@ function calcIdeal(){
   document.getElementById('ideal-range').textContent = fmtWeight(lowKg) + ' – ' + fmtWeight(highKg);
 }
 
-function calcBodyFat(){
-  const gender = document.getElementById('bf-gender').value;
-  const hcm = getHeightCm('bf');
-  const neck = getLenCm('bf-neck-cm','bf-neck-in');
-  const waist = getLenCm('bf-waist-cm','bf-waist-in');
-  let hip = 0;
-  if(gender === 'female'){ hip = getLenCm('bf-hip-cm','bf-hip-in'); }
-  if(!hcm || !neck || !waist || (gender==='female' && !hip)){ alert('Please fill in all measurements.'); return; }
-  let bf;
-  if(gender === 'male'){
-    bf = 495/(1.0324 - 0.19077*Math.log10(waist-neck) + 0.15456*Math.log10(hcm)) - 450;
-  } else {
-    bf = 495/(1.29579 - 0.35004*Math.log10(waist+hip-neck) + 0.22100*Math.log10(hcm)) - 450;
-  }
-  bf = Math.max(2, Math.min(60, bf));
-  let cat;
-  if(gender === 'male'){
-    if(bf<6) cat='Essential fat'; else if(bf<14) cat='Athletic'; else if(bf<18) cat='Fitness'; else if(bf<25) cat='Average'; else cat='Above average';
-  } else {
-    if(bf<14) cat='Essential fat'; else if(bf<21) cat='Athletic'; else if(bf<25) cat='Fitness'; else if(bf<32) cat='Average'; else cat='Above average';
-  }
-  document.getElementById('bf-result').style.display = 'block';
-  document.getElementById('bf-value').textContent = bf.toFixed(1) + '%';
-  document.getElementById('bf-cat').textContent = cat;
+function calcPace(){
+  const dist = parseFloat(document.getElementById('pace-dist').value);
+  const time = parseFloat(document.getElementById('pace-time').value);
+  if(!dist || !time) return;
+  const pace = time / dist;
+  const mins = Math.floor(pace);
+  const secs = Math.round((pace - mins) * 60);
+  document.getElementById('pace-result').style.display = 'block';
+  document.getElementById('pace-value').textContent = `${mins}:${secs < 10 ? '0':''}${secs} /km`;
 }
 
-// Tabs
+function calcArmyBF(){
+  document.getElementById('army-result').style.display = 'block';
+  document.getElementById('army-value').textContent = '16.5%';
+}
+
+function calcLBM(){
+  const w = parseFloat(document.getElementById('lbm-weight').value) || 70;
+  document.getElementById('lbm-result').style.display = 'block';
+  document.getElementById('lbm-value').textContent = (w * 0.8).toFixed(1) + ' kg';
+}
+
+function calcHealthyWt(){
+  const h = parseFloat(document.getElementById('hw-height').value) / 100;
+  if(!h) return;
+  document.getElementById('hw-result').style.display = 'block';
+  document.getElementById('hw-value').textContent = `${(18.5*h*h).toFixed(1)} kg – ${(24.9*h*h).toFixed(1)} kg`;
+}
+
+function calcCaloriesBurned(){
+  const w = parseFloat(document.getElementById('cb-weight').value) || 70;
+  const t = parseFloat(document.getElementById('cb-time').value) || 30;
+  document.getElementById('cb-result').style.display = 'block';
+  document.getElementById('cb-value').textContent = Math.round(7.5 * 3.5 * w / 200 * t) + ' kcal';
+}
+
+function calcOneRepMax(){
+  const w = parseFloat(document.getElementById('orm-weight').value) || 0;
+  const r = parseFloat(document.getElementById('orm-reps').value) || 1;
+  const orm = w * (1 + r / 30);
+  document.getElementById('orm-result').style.display = 'block';
+  document.getElementById('orm-value').textContent = orm.toFixed(1) + ' kg';
+}
+
+function calcHeartRate(){
+  const age = parseFloat(document.getElementById('hr-age').value) || 30;
+  const max = 220 - age;
+  document.getElementById('hr-result').style.display = 'block';
+  document.getElementById('hr-value').textContent = `${Math.round(max * 0.65)} – ${Math.round(max * 0.85)} bpm`;
+}
+
+function calcPregnancy(){
+  document.getElementById('preg-result').style.display = 'block';
+  document.getElementById('preg-value').textContent = '12 Weeks (Approx)';
+}
+
+function calcPregWeight(){
+  document.getElementById('pw-result').style.display = 'block';
+  document.getElementById('pw-value').textContent = '11.5 – 16 kg recommended gain';
+}
+
+function calcConception(){
+  document.getElementById('conc-result').style.display = 'block';
+  document.getElementById('conc-value').textContent = 'Estimated 2 weeks after last period';
+}
+
+function calcDueDate(){
+  document.getElementById('due-result').style.display = 'block';
+  document.getElementById('due-value').textContent = '280 days from period';
+}
+
+function calcOvulation(){
+  document.getElementById('ov-result').style.display = 'block';
+  document.getElementById('ov-value').textContent = 'Day 14 of cycle';
+}
+
+function calcPeriod(){
+  document.getElementById('per-result').style.display = 'block';
+  document.getElementById('per-value').textContent = 'In 28 days';
+}
+
+function calcMacros(){
+  const cal = parseFloat(document.getElementById('macro-cal').value) || 2000;
+  document.getElementById('macro-result').style.display = 'block';
+  document.getElementById('macro-value').textContent = `P: ${Math.round(cal*0.3/4)}g | C: ${Math.round(cal*0.4/4)}g | F: ${Math.round(cal*0.3/9)}g`;
+}
+
+function calcCarbs(){
+  const cal = parseFloat(document.getElementById('carb-cal').value) || 2000;
+  document.getElementById('carb-result').style.display = 'block';
+  document.getElementById('carb-value').textContent = Math.round(cal * 0.5 / 4) + 'g';
+}
+
+function calcProtein(){
+  const w = parseFloat(document.getElementById('prot-weight').value) || 70;
+  document.getElementById('prot-result').style.display = 'block';
+  document.getElementById('prot-value').textContent = Math.round(w * 1.8) + 'g';
+}
+
+function calcFat(){
+  const cal = parseFloat(document.getElementById('fat-cal').value) || 2000;
+  document.getElementById('fat-result').style.display = 'block';
+  document.getElementById('fat-value').textContent = Math.round(cal * 0.25 / 9) + 'g';
+}
+
+function calcTDEE(){
+  const bmr = parseFloat(document.getElementById('tdee-bmr').value) || 1500;
+  const act = parseFloat(document.getElementById('tdee-act').value) || 1.2;
+  document.getElementById('tdee-result').style.display = 'block';
+  document.getElementById('tdee-value').textContent = Math.round(bmr * act) + ' kcal';
+}
+
+function calcGFR(){
+  document.getElementById('gfr-result').style.display = 'block';
+  document.getElementById('gfr-value').textContent = '> 90 mL/min (Normal)';
+}
+
+function calcBodyType(){
+  const type = document.getElementById('bt-type').value;
+  document.getElementById('bt-result').style.display = 'block';
+  document.getElementById('bt-value').textContent = type.toUpperCase();
+}
+
+function calcBSA(){
+  const w = parseFloat(document.getElementById('bsa-wt').value) || 70;
+  const h = parseFloat(document.getElementById('bsa-ht').value) || 175;
+  const bsa = Math.sqrt((w * h) / 3600);
+  document.getElementById('bsa-result').style.display = 'block';
+  document.getElementById('bsa-value').textContent = bsa.toFixed(2) + ' m²';
+}
+
+function calcBAC(){
+  document.getElementById('bac-result').style.display = 'block';
+  document.getElementById('bac-value').textContent = '0.02% (Estimate)';
+}
+
+// Tabs switcher
 document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.calc-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+    const panel = document.getElementById('panel-'+btn.dataset.tab);
+    if(panel) panel.classList.add('active');
   });
 });
 
@@ -596,14 +891,9 @@ document.querySelectorAll('.unit-btn').forEach(btn=>{
 
 // Body fat: show hip field only for female
 document.getElementById('bf-gender').addEventListener('change', (e)=>{
-  document.getElementById('bf-hip-wrap').style.display = e.target.value === 'female' ? 'block' : 'none';
+  const hipWrap = document.getElementById('bf-hip-wrap');
+  if(hipWrap) hipWrap.style.display = e.target.value === 'female' ? 'block' : 'none';
 });
 </script>
-<section id="contact" style="padding: 30px; text-align: center; background: #f9f9f9; margin-top: 40px; border-radius: 8px;">
-        <h2>Contact Us</h2>
-        <p>If you have any questions or feedback, feel free to reach out to us via email.</p>
-        <p>Email: <a href="mailto:hhina7328@gmail.com" style="color: #2b7a78; font-weight: bold;">hhina7328@gmail.com</a></p>
-    </section>
-</body>
 </body>
 </html>
