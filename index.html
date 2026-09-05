@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free BMI Calculator, Calorie (TDEE) & Body Fat Calculator | VitalCalc</title>
+<title>Free BMI, TDEE, Pregnancy & Macro Calculators | VitalCalc</title>
 <meta name="google-site-verification" content="8ACu6m0ER3z2jBA6cCw63c3_swRlnGfzoR2FKmyA3Ak" />
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2895810972471113"
      crossorigin="anonymous"></script>
@@ -16,8 +16,8 @@
 
   gtag('config', 'G-5784RDJ21Y');
 </script>
-<meta name="description" content="Free BMI calculator, calorie (TDEE) calculator, ideal weight, and body fat percentage — trusted health tools in one place. No sign-up, nothing stored, instant results.">
-<meta name="keywords" content="free BMI calculator, health tools, calorie calculator, TDEE calculator, ideal weight calculator, body fat calculator">
+<meta name="description" content="Free health calculator suite: BMI, TDEE, body fat, pregnancy due date, macros, one-rep max, and more — 20+ tools, no sign-up, instant results.">
+<meta name="keywords" content="free BMI calculator, health tools, TDEE calculator, macro calculator, pregnancy due date calculator, one rep max calculator, pace calculator, BAC calculator">
 <link rel="canonical" href="https://malik14371.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="VitalCalc — Free BMI, Calorie, Ideal Weight & Body Fat Calculator">
@@ -68,6 +68,21 @@
       "@type": "Question",
       "name": "Is my data saved or sent anywhere?",
       "acceptedAnswer": { "@type": "Answer", "text": "No. Every calculation happens directly in your browser, and nothing you enter is stored, logged, or sent to a server." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the BAC calculator to decide if I'm okay to drive?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No — never use this or any online calculator to make that decision. Alcohol processing varies too much between individuals to rely on an estimate for something safety-critical. If you've been drinking, don't drive." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is GFR, and should I be worried about my result?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GFR is a kidney function indicator normally calculated from an actual blood test. A concerning result here is not a diagnosis — talk to a doctor, who will use lab-verified creatinine levels rather than a self-entered estimate." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the pregnancy calculators a substitute for an ultrasound?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. They give the same standard estimate doctors start with based on your last period date, but an early ultrasound is significantly more accurate for confirming actual dates." }
     }
   ]
 }
@@ -398,8 +413,9 @@ img{max-width:100%;display:block;}
         <div class="calc-panel" id="panel-armybf">
           <div class="field-row"><div class="field"><label>Gender</label><select id="army-gender"><option value="male">Male</option><option value="female">Female</option></select></div><div class="field"><label>Height (cm)</label><input type="number" id="army-height" placeholder="175"></div></div>
           <div class="field-row"><div class="field"><label>Neck (cm)</label><input type="number" id="army-neck" placeholder="38"></div><div class="field"><label>Abdomen/Waist (cm)</label><input type="number" id="army-waist" placeholder="85"></div></div>
+          <div id="army-hip-wrap" style="display:none;"><div class="field-row"><div class="field"><label>Hip (cm)</label><input type="number" id="army-hip" placeholder="95"></div></div></div>
           <button class="btn" onclick="calcArmyBF()">Calculate Army BF</button>
-          <div class="result-box" id="army-result"><div class="result-headline"><span class="result-value" id="army-value">–</span></div></div>
+          <div class="result-box" id="army-result"><div class="result-headline"><span class="result-value" id="army-value">–</span></div><p class="result-note">Uses the U.S. Army/Navy circumference method.</p></div>
         </div>
 
         <!-- 8. Lean Body Mass -->
@@ -446,9 +462,9 @@ img{max-width:100%;display:block;}
 
         <!-- 14. Pregnancy Weight Gain -->
         <div class="calc-panel" id="panel-pregwt">
-          <div class="field-row"><div class="field"><label>Pre-pregnancy Weight (kg)</label><input type="number" id="pw-weight" placeholder="60"></div></div>
+          <div class="field-row"><div class="field"><label>Pre-pregnancy Weight (kg)</label><input type="number" id="pw-weight" placeholder="60"></div><div class="field"><label>Height (cm)</label><input type="number" id="pw-height" placeholder="165"></div></div>
           <button class="btn" onclick="calcPregWeight()">Calculate Weight Gain</button>
-          <div class="result-box" id="pw-result"><div class="result-headline"><span class="result-value" id="pw-value">–</span></div></div>
+          <div class="result-box" id="pw-result"><div class="result-headline"><span class="result-value" id="pw-value">–</span></div><p class="result-note">Based on IOM guidelines for your pre-pregnancy BMI category.</p></div>
         </div>
 
         <!-- 15. Conception -->
@@ -516,9 +532,10 @@ img{max-width:100%;display:block;}
 
         <!-- 24. GFR -->
         <div class="calc-panel" id="panel-gfr">
-          <div class="field-row"><div class="field"><label>Age</label><input type="number" id="gfr-age" placeholder="40"></div><div class="field"><label>Creatinine (mg/dL)</label><input type="number" step="0.1" id="gfr-creat" placeholder="1.0"></div></div>
+          <div class="field-row"><div class="field"><label>Age</label><input type="number" id="gfr-age" placeholder="40"></div><div class="field"><label>Gender</label><select id="gfr-gender"><option value="male">Male</option><option value="female">Female</option></select></div></div>
+          <div class="field-row"><div class="field"><label>Creatinine (mg/dL)</label><input type="number" step="0.1" id="gfr-creat" placeholder="1.0"></div></div>
           <button class="btn" onclick="calcGFR()">Calculate GFR</button>
-          <div class="result-box" id="gfr-result"><div class="result-headline"><span class="result-value" id="gfr-value">–</span></div></div>
+          <div class="result-box" id="gfr-result"><div class="result-headline"><span class="result-value" id="gfr-value">–</span><span class="result-badge" id="gfr-cat" style="background:var(--vital)">–</span></div><p class="result-note">Estimate only — not a diagnosis. A real GFR reading requires a lab-verified blood test interpreted by a doctor.</p></div>
         </div>
 
         <!-- 25. Body Type -->
@@ -537,9 +554,11 @@ img{max-width:100%;display:block;}
 
         <!-- 27. BAC -->
         <div class="calc-panel" id="panel-bac">
+          <p class="result-note" style="margin-top:-8px;">Standard drink = ~14g pure alcohol (one beer, one glass of wine, or one shot).</p>
           <div class="field-row"><div class="field"><label>Drinks consumed</label><input type="number" id="bac-drinks" placeholder="3"></div><div class="field"><label>Weight (kg)</label><input type="number" id="bac-wt" placeholder="70"></div></div>
+          <div class="field-row"><div class="field"><label>Gender</label><select id="bac-gender"><option value="male">Male</option><option value="female">Female</option></select></div></div>
           <button class="btn" onclick="calcBAC()">Calculate BAC</button>
-          <div class="result-box" id="bac-result"><div class="result-headline"><span class="result-value" id="bac-value">–</span></div></div>
+          <div class="result-box" id="bac-result"><div class="result-headline"><span class="result-value" id="bac-value">–</span></div><p class="result-note" style="color:var(--pulse-dark);font-weight:700;">⚠ Never use this estimate to decide whether it's safe to drive or do anything requiring sobriety. If you've been drinking, don't drive.</p></div>
         </div>
 
       </div>
@@ -575,6 +594,46 @@ img{max-width:100%;display:block;}
         <h3>What does body fat percentage measure that BMI doesn't?</h3>
         <p>Body fat percentage estimates how much of your weight is actually fat versus muscle, bone, and water — the distinction BMI can't make. This calculator uses the U.S. Navy method (neck, waist, and for women, hip measurements), which is reasonably accurate for a method that needs no special equipment.</p>
       </div>
+
+      <div class="content-block">
+        <h3>Pace Calculator</h3>
+        <p>Pace is simply time divided by distance, shown as minutes per kilometer. It's the standard way runners compare speed across different distances, so a 5K pace and a marathon pace mean the same thing side by side.</p>
+      </div>
+
+      <div class="content-block">
+        <h3>One Rep Max (Epley formula)</h3>
+        <p><code>1RM = weight × (1 + reps ÷ 30)</code> — estimates the heaviest weight you could lift for a single rep, based on a lighter weight lifted for multiple reps. Useful for programming training percentages without testing a true max, which carries real injury risk.</p>
+      </div>
+
+      <div class="content-block">
+        <h3>Target Heart Rate</h3>
+        <p>Estimated maximum heart rate is commonly calculated as 220 minus your age, with training zones expressed as a percentage of that number. It's a widely used starting point, but actual max heart rate varies by 10–20 bpm between people of the same age — treat it as a guide, not an exact figure.</p>
+      </div>
+
+      <div class="content-block">
+        <h3>Pregnancy Calculators (Due Date, Conception, Ovulation, Period)</h3>
+        <p>These use Naegele's rule — adding 280 days (40 weeks) to the first day of your last period — the same starting estimate most doctors use. Ovulation and next-period estimates assume a standard 28-day cycle unless you enter your own cycle length. An early ultrasound is significantly more accurate for confirming actual dates.</p>
+      </div>
+
+      <div class="content-block">
+        <h3>Macros (Carbs, Protein, Fat)</h3>
+        <p>Once you have a daily calorie target, macros split that number into carbohydrates, protein, and fat based on your goal. Building muscle generally calls for relatively more protein, while cutting often preserves protein while trimming overall calories.</p>
+      </div>
+
+      <div class="content-block">
+        <h3>GFR (Glomerular Filtration Rate)</h3>
+        <p>GFR estimates how well your kidneys filter waste from your blood, based on age, gender, and creatinine level. This is a genuine clinical measure — but a concerning number here is not a diagnosis. Real GFR readings come from a lab-verified blood test interpreted by a doctor, not a self-entered estimate.</p>
+      </div>
+
+      <div class="content-block">
+        <h3>Body Surface Area (Mosteller formula)</h3>
+        <p>Estimates your total skin surface area from height and weight. It's mainly a clinical tool hospitals use for accurate medication dosing — not something most people need day-to-day, but included here for reference.</p>
+      </div>
+
+      <div class="content-block">
+        <h3>BAC (Blood Alcohol Content)</h3>
+        <p>Estimates blood alcohol concentration from drinks consumed, body weight, and gender using the Widmark formula. Individual results vary significantly with metabolism, food intake, and other factors. <strong>Never use this estimate to decide whether it's safe to drive or do anything requiring sobriety</strong> — if you've been drinking, don't drive.</p>
+      </div>
     </div>
   </section>
 
@@ -606,6 +665,18 @@ img{max-width:100%;display:block;}
       <details class="faq-item">
         <summary>Which activity level should I pick for TDEE?</summary>
         <p>Be honest rather than optimistic — most people overestimate their activity level. If you're unsure, start with "Lightly active" and adjust based on how your weight trends over a few weeks.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I use the BAC calculator to decide if I'm okay to drive?</summary>
+        <p>No — never use this or any online calculator to make that decision. Alcohol processing varies too much between individuals to rely on an estimate for something safety-critical. If you've been drinking, don't drive.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What is GFR, and should I be worried about my result?</summary>
+        <p>GFR is a kidney function indicator normally calculated from an actual blood test. A concerning result here is not a diagnosis — talk to a doctor, who will use lab-verified creatinine levels rather than a self-entered estimate.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Are the pregnancy calculators a substitute for an ultrasound?</summary>
+        <p>No. They give the same standard estimate doctors start with based on your last period date, but an early ultrasound is significantly more accurate for confirming actual dates.</p>
       </details>
     </div>
   </section>
@@ -752,14 +823,38 @@ function calcPace(){
 }
 
 function calcArmyBF(){
+  const gender = document.getElementById('army-gender').value;
+  const height = parseFloat(document.getElementById('army-height').value);
+  const neck = parseFloat(document.getElementById('army-neck').value);
+  const waist = parseFloat(document.getElementById('army-waist').value);
+  const hip = gender === 'female' ? parseFloat(document.getElementById('army-hip').value) : 0;
+  if(!height || !neck || !waist || (gender === 'female' && !hip)){ alert('Please fill in all measurements.'); return; }
+  let bf;
+  if(gender === 'male'){
+    bf = 495/(1.0324 - 0.19077*Math.log10(waist-neck) + 0.15456*Math.log10(height)) - 450;
+  } else {
+    bf = 495/(1.29579 - 0.35004*Math.log10(waist+hip-neck) + 0.22100*Math.log10(height)) - 450;
+  }
+  bf = Math.max(2, Math.min(60, bf));
   document.getElementById('army-result').style.display = 'block';
-  document.getElementById('army-value').textContent = '16.5%';
+  document.getElementById('army-value').textContent = bf.toFixed(1) + '%';
 }
 
+document.getElementById('army-gender').addEventListener('change', (e)=>{
+  document.getElementById('army-hip-wrap').style.display = e.target.value === 'female' ? 'block' : 'none';
+});
+
 function calcLBM(){
-  const w = parseFloat(document.getElementById('lbm-weight').value) || 70;
+  const gender = document.getElementById('lbm-gender').value;
+  const w = parseFloat(document.getElementById('lbm-weight').value);
+  const h = parseFloat(document.getElementById('lbm-height').value);
+  if(!w || !h){ alert('Please enter your weight and height.'); return; }
+  // Boer formula
+  const lbm = gender === 'male'
+    ? (0.407 * w) + (0.267 * h) - 19.2
+    : (0.252 * w) + (0.473 * h) - 48.3;
   document.getElementById('lbm-result').style.display = 'block';
-  document.getElementById('lbm-value').textContent = (w * 0.8).toFixed(1) + ' kg';
+  document.getElementById('lbm-value').textContent = lbm.toFixed(1) + ' kg';
 }
 
 function calcHealthyWt(){
@@ -791,34 +886,73 @@ function calcHeartRate(){
   document.getElementById('hr-value').textContent = `${Math.round(max * 0.65)} – ${Math.round(max * 0.85)} bpm`;
 }
 
+function fmtDate(d){
+  return d.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+}
+
 function calcPregnancy(){
+  const dateStr = document.getElementById('preg-date').value;
+  if(!dateStr){ alert('Please enter your last period date.'); return; }
+  const lastPeriod = new Date(dateStr);
+  const today = new Date();
+  const diffDays = Math.floor((today - lastPeriod) / 86400000);
+  if(diffDays < 0){ alert('That date is in the future.'); return; }
+  const weeks = Math.floor(diffDays / 7);
+  const days = diffDays % 7;
   document.getElementById('preg-result').style.display = 'block';
-  document.getElementById('preg-value').textContent = '12 Weeks (Approx)';
+  document.getElementById('preg-value').textContent = `${weeks} weeks, ${days} days`;
 }
 
 function calcPregWeight(){
+  const w = parseFloat(document.getElementById('pw-weight').value);
+  const hcm = parseFloat(document.getElementById('pw-height').value);
+  if(!w || !hcm){ alert('Please enter your weight and height.'); return; }
+  const hM = hcm / 100;
+  const bmi = w / (hM * hM);
+  let range;
+  if(bmi < 18.5) range = '12.5 – 18 kg';
+  else if(bmi < 25) range = '11.5 – 16 kg';
+  else if(bmi < 30) range = '7 – 11.5 kg';
+  else range = '5 – 9 kg';
   document.getElementById('pw-result').style.display = 'block';
-  document.getElementById('pw-value').textContent = '11.5 – 16 kg recommended gain';
+  document.getElementById('pw-value').textContent = range;
 }
 
 function calcConception(){
+  const dateStr = document.getElementById('conc-date').value;
+  if(!dateStr){ alert('Please enter your due date.'); return; }
+  const dueDate = new Date(dateStr);
+  const conception = new Date(dueDate.getTime() - 266*86400000);
   document.getElementById('conc-result').style.display = 'block';
-  document.getElementById('conc-value').textContent = 'Estimated 2 weeks after last period';
+  document.getElementById('conc-value').textContent = fmtDate(conception);
 }
 
 function calcDueDate(){
+  const dateStr = document.getElementById('due-date').value;
+  if(!dateStr){ alert('Please enter your last period date.'); return; }
+  const lastPeriod = new Date(dateStr);
+  const due = new Date(lastPeriod.getTime() + 280*86400000);
   document.getElementById('due-result').style.display = 'block';
-  document.getElementById('due-value').textContent = '280 days from period';
+  document.getElementById('due-value').textContent = fmtDate(due);
 }
 
 function calcOvulation(){
+  const dateStr = document.getElementById('ov-date').value;
+  if(!dateStr){ alert('Please enter your last period date.'); return; }
+  const lastPeriod = new Date(dateStr);
+  const ovulation = new Date(lastPeriod.getTime() + 14*86400000);
   document.getElementById('ov-result').style.display = 'block';
-  document.getElementById('ov-value').textContent = 'Day 14 of cycle';
+  document.getElementById('ov-value').textContent = fmtDate(ovulation) + ' (assumes a 28-day cycle)';
 }
 
 function calcPeriod(){
+  const dateStr = document.getElementById('per-date').value;
+  const cycle = parseFloat(document.getElementById('per-cycle').value) || 28;
+  if(!dateStr){ alert('Please enter your last period date.'); return; }
+  const lastPeriod = new Date(dateStr);
+  const next = new Date(lastPeriod.getTime() + cycle*86400000);
   document.getElementById('per-result').style.display = 'block';
-  document.getElementById('per-value').textContent = 'In 28 days';
+  document.getElementById('per-value').textContent = fmtDate(next);
 }
 
 function calcMacros(){
@@ -853,8 +987,23 @@ function calcTDEE(){
 }
 
 function calcGFR(){
+  const age = parseFloat(document.getElementById('gfr-age').value);
+  const gender = document.getElementById('gfr-gender').value;
+  const creat = parseFloat(document.getElementById('gfr-creat').value);
+  if(!age || !creat){ alert('Please enter your age and creatinine level.'); return; }
+  // Simplified, race-free MDRD-style estimate
+  let gfr = 175 * Math.pow(creat, -1.154) * Math.pow(age, -0.203);
+  if(gender === 'female') gfr *= 0.742;
+  let cat, color;
+  if(gfr >= 90){ cat = 'Normal'; color = 'var(--vital)'; }
+  else if(gfr >= 60){ cat = 'Mildly reduced'; color = 'var(--amber)'; }
+  else if(gfr >= 30){ cat = 'Moderately reduced'; color = 'var(--amber)'; }
+  else { cat = 'Severely reduced'; color = 'var(--pulse-dark)'; }
   document.getElementById('gfr-result').style.display = 'block';
-  document.getElementById('gfr-value').textContent = '> 90 mL/min (Normal)';
+  document.getElementById('gfr-value').textContent = Math.round(gfr) + ' mL/min';
+  const badge = document.getElementById('gfr-cat');
+  badge.textContent = cat;
+  badge.style.background = color;
 }
 
 function calcBodyType(){
@@ -872,8 +1021,15 @@ function calcBSA(){
 }
 
 function calcBAC(){
+  const drinks = parseFloat(document.getElementById('bac-drinks').value);
+  const w = parseFloat(document.getElementById('bac-wt').value);
+  const gender = document.getElementById('bac-gender').value;
+  if(!drinks || !w){ alert('Please enter drinks consumed and weight.'); return; }
+  const r = gender === 'male' ? 0.68 : 0.55; // Widmark distribution ratio
+  // Standard drink ≈ 14g pure alcohol. No time-since-drinking adjustment (conservative estimate).
+  const bac = (drinks * 14 * 100) / (w * 1000 * r);
   document.getElementById('bac-result').style.display = 'block';
-  document.getElementById('bac-value').textContent = '0.02% (Estimate)';
+  document.getElementById('bac-value').textContent = bac.toFixed(3) + '%';
 }
 
 // Tabs switcher
